@@ -1,0 +1,305 @@
+body {
+    margin: 40px 60px;
+    font-family: 'Roboto', sans-serif;}
+
+.tan-box {
+        margin: 20px 0px;
+        background: #E2DAC6;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        padding: 10px 20px;
+}
+
+.gray-box {
+    margin: 20px 0px;
+    background: #E5E5E5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+     padding: 10px 20px;
+}
+
+.title {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+/* NAVIGATION BAR */
+
+nav {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+.nav-text{
+    font-size: 24px;
+    padding: 0px 0px 0px 15px;
+    color: black;
+}
+
+nav a:link {
+    text-decoration: none;
+}
+
+.nav-text {
+    padding-bottom: 20px;
+}
+
+.active {
+    color: #BB0000;
+}
+
+#home-img {
+    height: 80px;
+}
+
+#nav-sio {
+    font-size: 36px;
+    text-decoration: none;
+}
+
+#right-nav a {
+    padding: 0px 10px;
+}
+
+#red-line {
+    width: 100%;
+    margin: 0px 0px;
+    height: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+}
+
+/* HOME PAGE */
+
+.row {
+    width: 100%;
+    margin: 0px;
+}
+.home-course {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    margin: 10px;
+}
+
+.course-right {
+    width: 60%;
+    float: left;
+}
+
+#current-courses {
+    float: left;
+    width: 30%;
+}
+
+.course-num {
+    margin-bottom: 10px;
+}
+
+#c05-410{
+    background: #B3CBC4;
+}
+
+#c05-430{
+    background: #AEBAD2;
+}
+
+#c15-213{
+    background: #B6D3E6;
+}
+
+#c67-272{
+    background: #C9E1CD;
+}
+
+#c85-241{
+    background: #B1D8DA;
+}
+
+
+/* CATALOG PAGE */
+
+
+
+#catalog-filter {
+    width: 100%;
+    margin: 5px 0px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown button {
+    margin: 5px 0px;
+    margin-right: 7px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    padding: 5px 10px;
+}
+
+.dropdown i {
+    margin: 2px 3px;
+}
+
+#search-bar {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: #FFFFFF;
+    margin: 5px 0px;
+    display: inline-block;
+}
+
+form {
+    display: inline-block;
+}
+
+#search-bar input {
+    background: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+}
+
+#search-bar button {
+    background: #FFFFFF;
+    border: none;
+    margin: 0px;
+    padding: 5px 10px;
+
+}
+
+#search-bar i {
+    margin: 2px 3px;
+}
+
+#catalog-table {
+    width: 100%;
+    text-align: left;
+    border-spacing: 0px 10px;
+}
+
+#table-header {
+    background: #E2DAC6;
+    padding: 0px 20px;
+
+}
+
+th {
+    padding: 10px 10px;
+    position: sticky;
+    top: 0;
+    background: #E2DAC6;
+    font-weight: 700;
+
+}
+
+.course {
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.course:hover {
+    background: #E5E5E5;
+}
+
+.course td {
+    padding: 10px;
+}
+
+/* DETAILS PAGE */
+
+hr {
+    border: 1px solid #8E1A28;;
+}
+
+.back-btn {
+    margin: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    padding: 10px 15px;
+
+}
+
+.back-btn i{
+    font-size: 20px;
+}
+.row {
+    display: table;
+    margin: 10px;
+}
+
+.row p {
+    font-size: 14px;
+    margin: 4px 0px;
+}
+
+.row h2, h3 {
+    margin: 9px 0px;
+}
+
+
+.options-col {
+    float: left;
+    width: 30%;
+    padding: 5px;
+    margin: 5px;
+}
+
+.info-col {
+    float: left;
+    width: 65%;
+    padding: 5px;
+    margin: 5px;
+}
+
+.options-col form {
+    width: 100%;
+}
+
+.options-col br {
+    display: block;
+    content: " ";
+    margin-top: 5px;
+}
+
+.submit-btn { 
+    margin: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    padding: 5px 10px;
+
+}
+
+.form-row {
+    width: 100%;
+    display: table;
+    font-size: 14px;
+    margin: 10px 0px;
+}
+
+.form-input {
+    float: left;
+    width: 10%;
+}
+
+.form-label {
+    float: left;
+    width: 88%;
+    padding-left: 3px;
+}
+
+
+
+
+
