@@ -1,12 +1,12 @@
 body {
-    margin: 40px 60px;
+    margin: 20px 40px;
     font-family: 'Roboto', sans-serif;}
 
 .tan-box {
-        margin: 20px 0px;
-        background: #E2DAC6;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        padding: 10px 20px;
+    margin: 20px 0px;
+    background: #E2DAC6;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 10px 20px;
 }
 
 .gray-box {
@@ -15,6 +15,9 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
      padding: 10px 20px;
 }
+
+
+
 
 .title {
     text-align: center;
@@ -75,10 +78,11 @@ nav a:link {
 
 /* HOME PAGE */
 
-.row {
+.home-row {
     width: 100%;
     margin: 0px;
 }
+
 .home-course {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 10px;
@@ -86,17 +90,23 @@ nav a:link {
 }
 
 .course-right {
-    width: 60%;
-    float: left;
+    width: 64%;
+    float: right;
 }
 
 #current-courses {
     float: left;
-    width: 30%;
+    width: 25%;
+    padding: 20px;
+}
+
+#current-courses p{
+    margin: 2px 0px;
+    font-size: 12px;
 }
 
 .course-num {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 #c05-410{
@@ -118,6 +128,40 @@ nav a:link {
 #c85-241{
     background: #B1D8DA;
 }
+
+#fall2021 {
+    margin: 0px 10px;
+}
+
+#fall2021arrow {
+    margin: 10px;
+    font-weight: 300;
+}
+
+#spring2021 {
+    margin-left: 10px;
+}
+
+.white-box {
+    background-color: white;
+    position: relative;
+    width: 30%;
+    height: 0;
+    padding-bottom: 30%;
+    display: inline-block;
+    margin: 10px;
+    text-align: left;
+}
+
+.white-box h4 {
+    position: absolute;
+    bottom: 0;
+    margin: 15px;
+    font-size: 16px;
+}
+
+
+
 
 
 /* CATALOG PAGE */
