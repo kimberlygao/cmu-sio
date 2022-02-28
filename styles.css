@@ -16,9 +16,6 @@ body {
      padding: 10px 20px;
 }
 
-
-
-
 .title {
     text-align: center;
 }
@@ -79,8 +76,9 @@ nav a:link {
 /* HOME PAGE */
 
 .home-row {
-    width: 100%;
-    margin: 0px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-auto-rows: 300px;
 }
 
 .home-course {
@@ -89,15 +87,33 @@ nav a:link {
     margin: 10px;
 }
 
-.course-right {
-    width: 64%;
-    float: right;
+#current-courses {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+} 
+
+.gray-box.course-right {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin-left: 40px;
 }
 
-#current-courses {
-    float: left;
-    width: 25%;
-    padding: 20px;
+.tan-box.course-right {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-left: 40px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.three-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 #current-courses p{
@@ -144,20 +160,16 @@ nav a:link {
 
 .white-box {
     background-color: white;
-    position: relative;
-    width: 30%;
-    height: 0;
-    padding-bottom: 30%;
-    display: inline-block;
     margin: 10px;
-    text-align: left;
+
 }
 
 .white-box h4 {
-    position: absolute;
-    bottom: 0;
-    margin: 15px;
+    padding-left: 10px;
+    padding-top: 60%;
+    margin: 10px;
     font-size: 16px;
+    text-align: left;
 }
 
 
