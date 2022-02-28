@@ -113,7 +113,22 @@ nav a:link {
 
 .three-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 200px);
+    column-gap: 10px;
+    margin: 10px 10px;
+    justify-content: space-between;
+}
+
+.white-box {
+    background-color: white;
+}
+
+.white-box h4 {
+    padding-left: 10px;
+    padding-top: 120px;
+    margin: 10px;
+    font-size: 16px;
+    text-align: left;
 }
 
 #current-courses p{
@@ -158,27 +173,7 @@ nav a:link {
     margin-left: 10px;
 }
 
-.white-box {
-    background-color: white;
-    margin: 10px;
-
-}
-
-.white-box h4 {
-    padding-left: 10px;
-    padding-top: 60%;
-    margin: 10px;
-    font-size: 16px;
-    text-align: left;
-}
-
-
-
-
-
 /* CATALOG PAGE */
-
-
 
 #catalog-filter {
     width: 100%;
