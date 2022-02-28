@@ -1,6 +1,7 @@
 body {
     margin: 20px 40px;
-    font-family: 'Roboto', sans-serif;}
+    font-family: 'Roboto', sans-serif;
+}
 
 .tan-box {
     margin: 20px 0px;
@@ -34,7 +35,7 @@ nav {
     margin-bottom: 0px;
 }
 
-.nav-text{
+.nav-text {
     font-size: 24px;
     padding: 0px 0px 0px 15px;
     color: black;
@@ -136,7 +137,7 @@ nav a:link {
     text-align: left;
 }
 
-#current-courses p{
+#current-courses p {
     margin: 2px 0px;
     font-size: 12px;
 }
@@ -145,7 +146,7 @@ nav a:link {
     margin-bottom: 6px;
 }
 
-#c05-410{
+#c05-410 {
     background: #B3CBC4;
 }
 
@@ -153,15 +154,15 @@ nav a:link {
     background: #AEBAD2;
 }
 
-#c15-213{
+#c15-213 {
     background: #B6D3E6;
 }
 
-#c67-272{
+#c67-272 {
     background: #C9E1CD;
 }
 
-#c85-241{
+#c85-241 {
     background: #B1D8DA;
 }
 
@@ -169,7 +170,7 @@ nav a:link {
     margin-left: 10px;
 }
 
-#fall2021arrow {
+i {
     margin: 10px;
     font-weight: 300;
 }
@@ -286,7 +287,7 @@ hr {
 
 }
 
-.back-btn i{
+.back-btn i {
     font-size: 20px;
 }
 .row {
