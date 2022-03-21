@@ -370,20 +370,13 @@ hr {
     text-align: center;
 }
 
+
 #inner-schedule {
     display: grid;
-    grid-template-columns: 1fr 8fr;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr;
     grid-template-rows: repeat(15, 1fr);
 
-}
-
-#schedule-times{
-    text-align: right;
-}
-
-#weekly {
-    display: flex;
-    justify-content: space-around;
 }
 
 #plan {
@@ -395,8 +388,18 @@ hr {
 
 .day-box {
     background-color: white;
-    grid-row-start: 2;
+    margin: 5px;
 
+}
+
+.right {
+    text-align: right;
+    margin: 5px;
+}
+
+#inner-schedule p {
+    font-size: 12px;
+    margin: 0px 5px;
 }
 
 .course-top{
@@ -405,7 +408,93 @@ hr {
 
 }
 
+#inner-schedule h4 {
+    margin: 0px;
+}
 
+#mon {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#tue {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#wed {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#thu {
+    grid-column-start: 5;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#fri {
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#p05-410M {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 6;
+    grid-row-end: 8;
+    background: #B3CBC4;
+    padding: 5px;
+}
+
+#p05-410W {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 6;
+    grid-row-end: 8;
+    background: #B3CBC4;
+    padding: 5px;
+}
+
+.plan-class p {
+    font-size: 10px;
+    text-align: left;
+    margin: 0px;
+}
+
+.plan-class {
+    text-align: left;
+    margin: 0px 5px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+}
+
+.white {
+    background-color: white;
+}
+
+#plan-courses {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    /* margin: 0px 10px; */
+    margin-right: 20px;
+} 
+
+#plan-courses p {
+    margin: 2px 0px;
+    font-size: 12px;
+}
 
 
 
