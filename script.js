@@ -74,6 +74,25 @@ function findCourseByNum(courseNum) {
     return null;
 }
 
+function getLectureDates(course) {
+    let dates = "";
+    for(let i = 0; i < course.lecture.days.length; i++)
+            dates += course.lecture.days[i];
+
+    return dates;
+}
+
+function getCourses() {
+    let numCourses = parseInt(sessionStorage.getItem("numCourses"));
+    console.log(numCourses)
+    let courses = [];
+    for(let i = 0; i < numCourses; i++) {
+        courses.push(JSON.parse(sessionStorage.getItem("course" + i)));
+    }
+    return courses;
+}
+
+
 // INTERACTIVE FUNCTIONS
 
 function openDetails(courseNum) {
@@ -226,15 +245,7 @@ function loadCourseCatalog () {
 
 }
 
-function getLectureDates(course) {
-    let dates = "";
-    for(let i = 0; i < course.lecture.days.length; i++)
-            dates += course.lecture.days[i];
-
-    return dates;
-}
-
-function onLoad() {
+function updateNumCourses() {
     // update current number of courses
     let numCourseElements = document.getElementsByClassName("num-courses");
     let num = parseInt(sessionStorage.getItem("numCourses"));
@@ -267,15 +278,5 @@ function addCourse() {
     console.log("Course Added");
     console.log(getCourses());
 
-    onLoad();
-}
-
-function getCourses() {
-    let numCourses = parseInt(sessionStorage.getItem("numCourses"));
-    console.log(numCourses)
-    let courses = [];
-    for(let i = 0; i < numCourses; i++) {
-        courses.push(JSON.parse(sessionStorage.getItem("course" + i)));
-    }
-    return courses;
+    updateNumCourses();
 }
