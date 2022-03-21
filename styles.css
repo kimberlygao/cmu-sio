@@ -357,6 +357,55 @@ hr {
 }
 
 
+/* SCHEDULE PAGE */
+
+.schedule-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-auto-rows: 300px;
+
+}
+
+.schedule-row h3, h4 {
+    text-align: center;
+}
+
+#inner-schedule {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    grid-template-rows: repeat(15, 1fr);
+
+}
+
+#schedule-times{
+    text-align: right;
+}
+
+#weekly {
+    display: flex;
+    justify-content: space-around;
+}
+
+#plan {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.day-box {
+    background-color: white;
+    grid-row-start: 2;
+
+}
+
+.course-top{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
 
 
 
