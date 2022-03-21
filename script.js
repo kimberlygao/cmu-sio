@@ -48,7 +48,6 @@ function Profile(topics, relevance, goals, structure, resources, commitment) {
     this.resources = resources;
     this.commitment = commitment;
 }
- 
 
 // global variables
 let currentCourse;
@@ -247,7 +246,7 @@ function onLoad() {
 
 function loadFillers() {
     // add fillers to schedule
-    let numFillers = 15 * 5 - (numCourses * 2);
+    let numFillers = 15 * 5 - (1 * 2);
     let div = document.getElementById("inner-schedule");
     for(let i = 0; i < numFillers; i++) {
         let filler = document.createElement("p");
@@ -280,6 +279,3 @@ function getCourses() {
     }
     return courses;
 }
-
-onLoad();
-loadCourseCatalog();
