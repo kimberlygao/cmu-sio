@@ -1,8 +1,8 @@
 // objects for course data
-function Course(number, name, lecture, info) {
+function Course(number, name, lectures, info) {
     this.number = number;
     this.name = name;
-    this.lecture = lecture;
+    this.lectures = lectures;
     this.info = info;
 }
 
@@ -49,14 +49,19 @@ function Profile(topics, relevance, goals, structure, resources, commitment) {
     this.commitment = commitment;
 }
 
+function CourseSelection(courseNum, lecNum, secLet) {
+    this.courseNum = courseNum;
+    this.lecNum = lecNum;
+    this.secLet = secLet;
+}
+
 // global variables
 let currentCourse;
 let courseCatalog;
 let selectedCourses = [];
-let numCourses = 1;
+
 
 // HELPER FUNCTIONS
-
 function getSectionInfo(section) {
     return "Section " + section.letter + " " + "<br>" + section.day + " " + section.time + " | " + section.location
 }
@@ -66,9 +71,11 @@ function getLabel(detail) {
 }
 
 function findCourseByNum(courseNum) {
-    for(let i = 0; i < courseCatalog.length; i++) {
-        if(courseCatalog[i].number == courseNum)
-            return courseCatalog[i];
+    let catalog = JSON.parse(sessionStorage.getItem("catalog"))
+    console.log(catalog)
+    for(let i = 0; i < catalog.length; i++) {
+        if(catalog[i].number == courseNum)
+            return catalog[i];
     }
 
     return null;
@@ -76,15 +83,14 @@ function findCourseByNum(courseNum) {
 
 function getLectureDates(course) {
     let dates = "";
-    for(let i = 0; i < course.lecture.days.length; i++)
-            dates += course.lecture.days[i];
+    for(let i = 0; i < course.lectures[0].days.length; i++)
+            dates += course.lectures[0].days[i];
 
     return dates;
 }
 
 function getCourses() {
     let numCourses = parseInt(sessionStorage.getItem("numCourses"));
-    console.log(numCourses)
     let courses = [];
     for(let i = 0; i < numCourses; i++) {
         courses.push(JSON.parse(sessionStorage.getItem("course" + i)));
@@ -94,71 +100,6 @@ function getCourses() {
 
 
 // INTERACTIVE FUNCTIONS
-
-function openDetails(courseNum) {
-    window.location.href = "details.html";
-}
-
-// called when details page is opened from catalog to update correct course details
-function updateDetails() {
-    let c = JSON.parse(sessionStorage.getItem("currentCourse"))
-    let label = "";
-    let detail;
-    
-    document.getElementById("details-num-name").innerHTML = c.number + " " + c.name;
-
-    
-    detail = document.getElementById("details-lecture")
-    detail.innerHTML = getLabel(detail) + c.lecture.number;
-
-    detail = document.getElementById("details-prof");
-    detail.innerHTML = c.lecture.prof;
-
-    detail = document.getElementById("details-time-location");
-    detail.innerHTML = getLectureDates(c) + " " + c.lecture.time + " | " + c.lecture.location;
-
-    detail = document.getElementById("details-sectionA");
-    detail.innerHTML = getSectionInfo(c.lecture.sections[0]);
-
-    detail = document.getElementById("details-sectionB");
-    detail.innerHTML = getSectionInfo(c.lecture.sections[1]);
-
-    detail = document.getElementById("details-units");
-    detail.innerHTML = getLabel(detail) + c.info.specs.units;
-
-    detail = document.getElementById("details-dept");
-    detail.innerHTML = getLabel(detail) + c.info.specs.dept;
-
-    detail = document.getElementById("details-course-level");
-    detail.innerHTML = getLabel(detail) + c.info.specs.level;
-
-    detail = document.getElementById("details-description");
-    detail.innerHTML = c.info.description;
-
-    detail = document.getElementById("details-prereq-courses");
-    detail.innerHTML = getLabel(detail) + c.info.prereqs.courses;
-
-    detail = document.getElementById("details-knowledge");
-    detail.innerHTML = getLabel(detail) + c.info.prereqs.knowledge;
-
-    detail = document.getElementById("details-topics");
-    detail.innerHTML = getLabel(detail) + c.info.profile.topics;
-
-    detail = document.getElementById("details-relevance");
-    detail.innerHTML = getLabel(detail) + c.info.profile.relevance;
-
-    detail = document.getElementById("details-goals");
-    detail.innerHTML = getLabel(detail) + c.info.profile.goals;
-
-    detail = document.getElementById("details-structure");
-    detail.innerHTML = getLabel(detail) + c.info.profile.structure;
-
-    detail = document.getElementById("details-resources");
-    detail.innerHTML = getLabel(detail) + c.info.profile.resources;
-
-    detail = document.getElementById("details-extra-time");
-    detail.innerHTML = getLabel(detail) + c.info.profile.commitment;
-}
 
 function loadCourseCatalog () {
     let puiProfile = new Profile("The course will cover the basics of rapid prototyping, discount usability, user testing, perception and cognition as related to UX design, and get a glimpse of the future of UX design.",
@@ -174,9 +115,9 @@ function loadCourseCatalog () {
                                  "This course is combines lecture, and an intensive programming lab and design studio. It is for those who want to express their interactive ideas in working prototypes. It will cover the importance of human-computer interaction/interface design, iterative design, input/output techniques, how to design and evaluate interfaces, and research topics that will impact user interfaces in the future. In lab, you will learn how to design and program effective graphical user interfaces, and how to perform user tests. We will cover a number of prototyping tools and require prototypes to be constructed in each, ranging from animated mock-ups to fully functional programs. Assignments will require implementing UIs, testing that interface with users, and then modifying the interface based on findings. Some class sessions will feature design reviews of student work. This course is for HCII Masters students and HCI dual majors with a minimal programming background. Students will often not be professional programmers, but will need to interact with programmers.\nRECITATION SELECTION: Students taking this course can sign up for either Prototyping Lab recitation.",
                                  puiPrereqs,
                                  puiProfile);
-    let puiSections = [new Section("A", "10:30 AM - 11:30 AM", "M", "PH 226A"), new Section("B", "10:30 AM - 11:30 AM", "M", "BH 110")];
-    let puiLecture = new Lecture("08:30 AM - 10:30 AM", 1, "Hudson", puiSections, "NSH 1305", ["M", "W"]);
-    let pui = new Course("05-430", "Programmable User Interfaces", puiLecture, puiInfo);
+    let puiSections = [new Section("A", "09:30 AM - 11:00 AM", "M", "PH 226A"), new Section("B", "09:30 AM - 11:00 AM", "M", "BH 110")];
+    let puiLectures = [new Lecture("08:00 AM - 09:30 AM", 1, "Hudson", puiSections, "NSH 1305", ["M", "W"])];
+    let pui = new Course("05-430", "Programmable User Interfaces", puiLectures, puiInfo);
 
     let ucreProfile = new Profile("This course covers a variety of user research methods for both generating new systems designs and evaluating them.",
                                  "This course is intended to make you an effective, professional system designer and analyst incorporating user research.",
@@ -190,14 +131,14 @@ function loadCourseCatalog () {
                                  "This course provides and overview and introduction to the field of human-computer interaction (HCI). It introduces students to tools, techniques, and sources of information about HCI and provides a systematic approach to design. The course increases awareness of good and bad design through observation of existing technology, and teaches the basic skills of task analysis, and analytic and empirical evaluation methods. This is a companion course to courses in visual design (51-422) and software implementation (05-430, 05-431). When registering for this course, undergraduate students are automatically placed the wait list. Students will be then moved into the class, based on if they are in the BHCI second major and year in school e.g. seniors, juniors, etc. In the FALL: This course is NOT open to students outside the HCI major. When registering for this course, undergraduate students are automatically placed the wait list. Students will be then moved into the class, based on if they are in the BHCI second major and year in school. SPRING offering is open to other students.",
                                  ucrePrereqs,
                                  ucreProfile);
-    let ucreSections = [new Section("A", "12:00 PM - 02:00 PM", "M", "GHC 4401"), new Section("B", "10:30 AM - 11:30 AM", "M", "GH 4402")];
-    let ucreLecture = new Lecture("12:00 PM - 02:00 PM", 1, "Kittur, Musuraca", ucreSections, "MM 103", ["W"]);
-    let ucre = new Course("05-410", "User-Centered Research and Evaluation", ucreLecture, ucreInfo);
+    let ucreSections = [new Section("A", "11:30 AM - 01:00 PM", "M", "GHC 4401"), new Section("B", "11:30 AM - 01:00 PM", "M", "GH 4402")];
+    let ucreLectures = [new Lecture("11:30 AM - 01:00 PM", 1, "Kittur, Musuraca", ucreSections, "MM 103", ["W"])];
+    let ucre = new Course("05-410", "User-Centered Research and Evaluation", ucreLectures, ucreInfo);
 
     courseCatalog = [pui, ucre];
     currentCourseDetails = courseCatalog[1];
 
-    catalog = document.getElementById("catalog-table");
+    catalog = $("#catalog-table");
 
     for(let i = 0; i < courseCatalog.length; i++) {
         let curr = courseCatalog[i];
@@ -212,71 +153,50 @@ function loadCourseCatalog () {
         }
 
         let num = document.createElement("td");
-        num.appendChild(document.createTextNode(curr.number));
-        newCourse.appendChild(num);
+        num.append(document.createTextNode(curr.number));
+        newCourse.append(num);
 
         let name = document.createElement("td");
-        name.appendChild(document.createTextNode(curr.name));
-        newCourse.appendChild(name);
+        name.append(document.createTextNode(curr.name));
+        newCourse.append(name);
 
         let prof = document.createElement("td");
-        prof.appendChild(document.createTextNode(curr.lecture.prof));
-        newCourse.appendChild(prof);
+        prof.append(document.createTextNode(curr.lectures[0].prof));
+        newCourse.append(prof);
 
 
         let time = document.createElement("td");
-        time.appendChild(document.createTextNode(getLectureDates(curr) + " " + curr.lecture.time));
-        newCourse.appendChild(time);
+        time.append(document.createTextNode(getLectureDates(curr) + " " + curr.lectures[0].time));
+        newCourse.append(time);
 
         let location = document.createElement("td");
-        location.appendChild(document.createTextNode(curr.lecture.location));
-        newCourse.appendChild(location);
+        location.append(document.createTextNode(curr.lectures[0].location));
+        newCourse.append(location);
 
         let units = document.createElement("td");
-        units.appendChild(document.createTextNode(curr.info.specs.units + " units"));
-        newCourse.appendChild(units);
+        units.append(document.createTextNode(curr.info.specs.units + " units"));
+        newCourse.append(units);
 
-        catalog.appendChild(newCourse);
+        catalog.append(newCourse);
     }
 
+    sessionStorage.setItem("catalog", JSON.stringify(courseCatalog));
     sessionStorage.setItem("numCourses", 1);
     console.log("set");
-    sessionStorage.setItem("course0", JSON.stringify(courseCatalog[1]));
-
+    sessionStorage.setItem("course1", JSON.stringify(courseCatalog[1]));
 }
 
 function updateNumCourses() {
-    // update current number of courses
-    let numCourseElements = document.getElementsByClassName("num-courses");
-    let num = parseInt(sessionStorage.getItem("numCourses"));
+    if(!('cart' in sessionStorage))
+        sessionStorage.setItem("cart", JSON.stringify([]))
+
+    let numCourseElements = $(".num-courses");
+    let cart = JSON.parse(sessionStorage.getItem("cart"));
+    let num = cart.length
+    console.log(num);
     for(let i = 0; i < numCourseElements.length; i++) {
         numCourseElements[i].innerHTML = `(${num})`
     }
-
 }
 
-function loadFillers() {
-    // add fillers to schedule
-    let numFillers = 15 * 5 - (1 * 2);
-    let div = document.getElementById("inner-schedule");
-    for(let i = 0; i < numFillers; i++) {
-        let filler = document.createElement("p");
-        filler.classList.add("white");
-        div.append(filler);
-    }
-}
-
-function showAddBtn() {
-    document.getElementById("add-btn").style.display = "inline-block";
-}
-
-function addCourse() {
-    let course = sessionStorage.getItem("currentCourse");
-    let numCourses = parseInt(sessionStorage.getItem("numCourses"));
-    sessionStorage.setItem("course" + numCourses, course);
-    sessionStorage.setItem("numCourses", numCourses + 1);
-    console.log("Course Added");
-    console.log(getCourses());
-
-    updateNumCourses();
-}
+updateNumCourses()
