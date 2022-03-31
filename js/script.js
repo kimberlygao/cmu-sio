@@ -62,17 +62,15 @@ let selectedCourses = [];
 
 
 // HELPER FUNCTIONS
+
+// returns string of section info
 function getSectionInfo(section) {
     return "Section " + section.letter + " " + "<br>" + section.day + " " + section.time + " | " + section.location
 }
 
-function getLabel(detail) {
-    return detail.innerHTML;
-}
-
+// returns course object based on number search
 function findCourseByNum(courseNum) {
     let catalog = JSON.parse(sessionStorage.getItem("catalog"))
-    console.log(catalog)
     for(let i = 0; i < catalog.length; i++) {
         if(catalog[i].number == courseNum)
             return catalog[i];
@@ -81,6 +79,7 @@ function findCourseByNum(courseNum) {
     return null;
 }
 
+// returns lecture dates in string
 function getLectureDates(course) {
     let dates = "";
     for(let i = 0; i < course.lectures[0].days.length; i++)
@@ -89,18 +88,7 @@ function getLectureDates(course) {
     return dates;
 }
 
-function getCourses() {
-    let numCourses = parseInt(sessionStorage.getItem("numCourses"));
-    let courses = [];
-    for(let i = 0; i < numCourses; i++) {
-        courses.push(JSON.parse(sessionStorage.getItem("course" + i)));
-    }
-    return courses;
-}
-
-
-// INTERACTIVE FUNCTIONS
-
+// loads course catalog data objects
 function loadCourseCatalog () {
     let puiProfile = new Profile("The course will cover the basics of rapid prototyping, discount usability, user testing, perception and cognition as related to UX design, and get a glimpse of the future of UX design.",
                                 "Students taking this course will have a stronger grasp of concepts fundamental to UX design, including rapid prototyping, discount usability, perception and cognition, and more.",
@@ -180,13 +168,16 @@ function loadCourseCatalog () {
         catalog.append(newCourse);
     }
 
+    // adds catalog items to sessions storage
     sessionStorage.setItem("catalog", JSON.stringify(courseCatalog));
     sessionStorage.setItem("numCourses", 1);
     console.log("set");
     sessionStorage.setItem("course1", JSON.stringify(courseCatalog[1]));
 }
 
+// gets current number of courses and edits on page
 function updateNumCourses() {
+    // creates cart if not already
     if(!('cart' in sessionStorage))
         sessionStorage.setItem("cart", JSON.stringify([]))
 

@@ -1,26 +1,35 @@
+// shows the button to add a class
 function showAddBtn() {
     $("#add-btn").css("display", "inline-block");
 }
 
+// gets label for each piece of info
+function getLabel(detail) {
+    return detail.innerHTML;
+}
+
+// adds course to cart and updates the number of courses
 function addCourse() {
     // get course on current details page
     let course = JSON.parse(sessionStorage.getItem("currentCourse"));
+    // get the course cart
     let cart = JSON.parse(sessionStorage.getItem("cart"))
-    console.log(cart);
 
+    // check if course is already in the cart -> alert user if so
     for(let i = 0; i < cart.length; i++) {
         if(cart[i].courseNum == course.number) {
-            alert("cannot add course already in plan")
+            alert("Cannot add course already in plan")
             return;
         }
             
     }
 
+    // get the selected secion and add selection to cart
     let section = $('input[name=section]:checked', '#details-section').val()
-    console.log(section); 
     cart.push(new CourseSelection(course.number, 1, section));
     sessionStorage.setItem("cart", JSON.stringify(cart))
 
+    // update num courses and open schedule to view new class
     updateNumCourses();
     window.location.href = "schedule.html";
 }
@@ -28,11 +37,9 @@ function addCourse() {
 // called when details page is opened from catalog to update correct course details
 function updateDetails() {
     let c = JSON.parse(sessionStorage.getItem("currentCourse"))
-    let label = "";
     let detail;
     
     document.getElementById("details-num-name").innerHTML = c.number + " " + c.name;
-
     
     detail = document.getElementById("details-lecture")
     detail.innerHTML = getLabel(detail) + c.lectures[0].number;
